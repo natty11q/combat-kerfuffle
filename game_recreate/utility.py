@@ -52,11 +52,11 @@ def easter_egg_name_check(name):
             "stats"         : {
                 "atk"   : 35,
                 "def"   : 40,
-                "hp"    : 60000,
+                "hp"    : 10000,
                 "mp"    : 30,
                 "ene"   : 85,
                 "spr"   : ("HYPER Fat Attack", 150),
-                "rge"   : False,
+                "rge"   : False
             },
             "victoryquotes" : []
         }
@@ -68,10 +68,11 @@ def easter_egg_name_check(name):
             "stats" : {
                 "atk" : 1.2,
                 "def" : 9999,
-                "hp" : 1049284,
-                "mp" : "400",
-                "ene" : "1",
-                "spr" : "blancattack!!"
+                "hp" : 1049,
+                "mp" : 400,
+                "ene" : 1,
+                "spr" : "blancattack!!",
+                "rge"  : False
             },
             "victoryquotes" : ["winner winner chicken dinner "]
             } 

@@ -43,19 +43,36 @@ class Player:
         elif healthprint < 1.5 :
             print(f"health :\t\t[{bcolours.FAIL}{Hbar}{space}{bcolours.ENDC}]    {self.health}")
 
-        elif healthprint >= 10 and healthprint <= 10:
+        elif healthprint >= 10 and healthprint <= 20:
             ex = "■" * (healthprint - 10)
             t = "■" * (10 - len(ex))
             print(f"health :\t\t[{bcolours.CYELLOW2}{ex}{bcolours.OKGREEN}{t}{bcolours.ENDC}]    {self.health}")
+            
+        elif healthprint > 20 and healthprint <= 30:
+            ex = "■" * (healthprint - 20)
+            t = "■" * (10 - len(ex))
+            print(f"health :\t\t[{bcolours.CBLUE2}{ex}{bcolours.CYELLOW}{t}{bcolours.ENDC}]    {self.health}")
+        
+        elif healthprint > 30:
+            ex = "■" * (healthprint - 30)
+            thing = "■" * 10
+            t = "■" * (int(healthprint) - len(thing))
+            print(f"health :\t\t[{bcolours.CGREEN2}{thing}{bcolours.CRED}{t}{bcolours.ENDC}]    {self.health}")
+            
 
+        elif healthprint > 30 and healthprint <= 40:
+            ex = "■" * (healthprint - 30)
+            t = "■" * (30 - len(ex))
+            print(f"health :\t\t[{bcolours.CBEIGE2}{ex}{bcolours.CBLUE2}{t}{bcolours.ENDC}]    {self.health}")
+        
         else:
             print(f"health :\t\t[{Hbar}{space}]    {self.health}")
 
         time.sleep(0.25)
 
         attkprint = self.attack // 10
-        Abar = "■" * attkprint
-        space = " " * (10 - attkprint)
+        Abar = "■" * int(attkprint)
+        space = " " * int((10 - attkprint))
 
         if attkprint >= 8.5 and attkprint <= 10:
             print(f"attack power :\t\t[{bcolours.OKGREEN}{Abar}{space}{bcolours.ENDC}]    {self.attack}")
@@ -159,14 +176,14 @@ class Player:
             space = " " * (10 - healthprint)
 
             if healthprint >= 8.5 and healthprint <= 10:
-                print(f"  [{bcolours.OKGREEN}{Hbar}{space}{bcolours.ENDC}] {self.health} / {self.health_max}" ,end="")
+                print(f"  [{bcolours.OKGREEN}{Hbar}{space}{bcolours.ENDC}] {self.health} / {int(self.health_max)}" ,end="")
             elif healthprint < 1.5:
-                print(f"  [{bcolours.FAIL}{Hbar}{space}{bcolours.ENDC}] {self.health} / {self.health_max}" ,end="")
+                print(f"  [{bcolours.FAIL}{Hbar}{space}{bcolours.ENDC}] {self.health} / {int(self.health_max)}" ,end="")
 
             elif healthprint >= 10:
                 ex = "■" * (healthprint - 10)
                 t = "■" * (10 - len(ex))
-                print(f"  [{bcolours.CYELLOW2}{ex}{bcolours.OKGREEN}{t}{bcolours.ENDC}] {self.health} / {self.health_max}",end="")
+                print(f"  [{bcolours.CYELLOW2}{ex}{bcolours.OKGREEN}{t}{bcolours.ENDC}] {int(self.health)} / {self.health_max}",end="")
 
             else:
                 print(f"  [{Hbar}{space}] {self.health} / {self.health_max}",end="")
