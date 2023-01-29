@@ -40,12 +40,19 @@ def basic_attacks(player : playerclass.Player) -> list:
                 
     return [0,"error occured"]
                     
-def super_attack(player : playerclass.Player, playerSupers):
+def super_attack(player : playerclass.Player, playerSupers) -> int:
     
-    pass
+    super_name = player.super[0]
+    super_dmg  = player.super[1]
+    
+    print(f"\n{player.name} used their super [{super_name}]\n")
+    
+    return super_dmg
 
 
 def itemchoose(player : playerclass.Player):
+    
     num : int = 1
+    
     for i_tem in player.items:
         print(f"[({num}){i_tem}]")

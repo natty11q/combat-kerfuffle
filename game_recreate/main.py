@@ -5,6 +5,7 @@ import random
 import bcolours
 import moves
 import player_super_easter_egg
+import playerturn
 
 import itertools
 import time
@@ -195,6 +196,10 @@ def main():
     padding : str = "=" * len(game_on_print)
     print(f"\n\n{padding} {game_on_print} {padding}\n\n")
 
+
+
+# ---------------------------------------- Main Game Loop ----------------------------------------- #
+
     main_game_loop : bool = True
     while main_game_loop:
         
@@ -205,6 +210,8 @@ def main():
         }
 
         damage = 0
+        
+        # --------------------------- platerturns -------------------------- #
         
         for _player_ in [P_1,P_2]:
             
