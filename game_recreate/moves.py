@@ -45,7 +45,7 @@ def super_attack(player : playerclass.Player, playerSupers) -> int:
     super_name = player.super[0]
     super_dmg  = player.super[1]
     
-    print(f"\n{player.name} used their super [{super_name}]\n")
+    print(f"\n{player.name} used their super: \n[{super_name}]\n")
     
     return super_dmg
 
