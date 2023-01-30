@@ -3,8 +3,9 @@ import playerclass
 import bcolours
 import time
 import itertools
+import moves
 
-def player_validate_input_main(_player_ : playerclass.Player,turn : int) -> str:
+def player_validate_input_main(_player_ : playerclass.Player) -> str:
     
     available_inputs = ["1","2","3"]
                 
@@ -30,11 +31,11 @@ def player_validate_input_main(_player_ : playerclass.Player,turn : int) -> str:
         print(f"{bcolours.ENDC} :\n\n")
     
     
-    if _player_.name in ["natty","natty11q"]:
-        if turn == 3:
-            _player_.aqquire_rage()
+    # if _player_.name in ["natty","natty11q"]:
+    #     if turn == 3:
+    #         _player_.aqquire_rage()
     
-        _player_.fillMeter(random.randint(1,100))
+    #     _player_.fillMeter(random.randint(1,100))
 
     print("[(1) Basic Moves  ]" , end= "\t")
     print("[(2) Super Attacks]" , end= "\n")
@@ -64,16 +65,34 @@ def player_validate_input_main(_player_ : playerclass.Player,turn : int) -> str:
         available_inputs.append("4")
 
     movechoose : str = ""
-    choosing = True
+
+    choosing : bool = True
     while choosing:
 
         movechoose = input("\n- ")
         movechoose.strip()
+
+        if movechoose not in ["1","2","3","4","5"]:
+            print("\nshosen move is not in the list of available player options\n")
+            continue
 
         if movechoose not in available_inputs:
             if movechoose == "4":
                 print("you don't have any items on you")
             else:
                 print("you arent ready to use that yet")
+                
+            continue
+        
+        choosing = False
 
     return movechoose
+
+
+
+def move_direct(movechosen):
+    if movechosen == "1":
+        (move,moveischosen) = moves.basic_moves()
+        
+        
+    

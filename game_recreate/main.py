@@ -168,167 +168,99 @@ def create_players():
 def main():
     intro()
     
-    P_1 :   playerclass.Player
-    P_2 :   playerclass.Player
-
-    playerlist , gamemode = create_players()
-    
-    P_1 , P_2 = playerlist[0] , playerlist[1]
-
-    P_1.allocate_stats()
-    P_2.allocate_stats()
-    
-    for p in [P_1,P_2]:
-        itemz = pregame.chose_items()
+    game_is_looping : bool = True
+    while game_is_looping:
         
-        for i in range(len(itemz)):
-            p.assignItem(itemz[i])
+        P_1 :   playerclass.Player
+        P_2 :   playerclass.Player
+
+        playerlist , gamemode = create_players()
         
-        print(p.name, "assigned")
+        P_1 , P_2 = playerlist[0] , playerlist[1]
 
-    P_1.print_stats() 
-    P_2.print_stats()
-
-    
-    turn : int = 1
-
-    game_on_print : str = "Game Start"
-    padding : str = "=" * len(game_on_print)
-    print(f"\n\n{padding} {game_on_print} {padding}\n\n")
-
-
-
-# ---------------------------------------- Main Game Loop ----------------------------------------- #
-
-    main_game_loop : bool = True
-    while main_game_loop:
+        P_1.allocate_stats()
+        P_2.allocate_stats()
         
-        print(f"\n{bcolours.BOLD}* Turn {turn} *{bcolours.ENDC}\n")
-        
-        movesave = {
-        
-        }
-
-        damage = 0
-        
-        # --------------------------- platerturns -------------------------- #
-        
-        for _player_ in [P_1,P_2]:
+        for p in [P_1,P_2]:
+            itemz = pregame.chose_items()
             
-            move_choice = True
+            for i in range(len(itemz)):
+                p.assignItem(itemz[i])
             
-            while move_choice:
+            print(p.name, "assigned")
+
+        P_1.print_stats() 
+        P_2.print_stats()
+
+        
+        turn : int = 1
+
+        game_on_print : str = "Game Start"
+        padding : str = "=" * len(game_on_print)
+        print(f"\n\n{padding} {game_on_print} {padding}\n\n")
+
+
+
+    # ---------------------------------------- Main Game Loop ----------------------------------------- #
+
+        main_game_loop : bool = True
+        while main_game_loop:
+            
+            print(f"\n{bcolours.BOLD}* Turn {turn} *{bcolours.ENDC}\n")
+            
+            movesave = {
+            
+            }
+
+            damage = 0
+            
+            # --------------------------- platerturns -------------------------- #
+            
+            for _player_ in [P_1,P_2]:
                 
-                available_inputs = ["1","2","3"]
+                move_picking : bool = True
                 
-                if _player_.rage:
-                    print(f"{bcolours.CRED}")
-                else:
-                    print(bcolours.ENDC)
-                
-                print(f"{_player_.name} ({_player_.type})",end = "")
-                
-                if _player_.rage:
-                    print(" ❂",end = "")
+                while move_picking:
                     
-                _player_.displayHealth()
-                
-                print("\n")
-                
-                _player_.print_energy()
-                
-                if _player_.rage:
-                    print(f"{bcolours.CRED} :\n\n")
-                else:
-                    print(f"{bcolours.ENDC} :\n\n")
-                
-                
-                if _player_.name in ["natty","natty11q"]:
-                    if turn == 3:
-                        _player_.aqquire_rage()
-                
-                    _player_.fillMeter(random.randint(1,100))
-                
-                print("[(1) Basic Attcks ]" , end= "\t")
-                print("[(2) Super Attacks]" , end= "\n")
-                print("[(3) Magic Skils  ]" , end= "\t")
-                print("[(4) Items        ]" , end= "\n\n")
-                
-                
-                
-                if _player_.meter < 100:
+                    movechoose = playerturn.player_validate_input_main(_player_)
+                    playerturn.move_direct(movechoose)
                     
-                    print(f"{bcolours.CBLACK}           [(5) ULTRA!       ]{bcolours.ENDC}")
-                else:
-
-                    m = 0
-                    for i in itertools.cycle(bcolours.RAINBOW): 
-                        print(f"           {i}[(5) ULTRA!       ]{bcolours.ENDC}",end = "\r")
-                        m += 1
-
-                        if m == 15:
-                            break
-                        time.sleep(0.05)
-                        
-                    available_inputs.append("5")
                     
-                    print(f"           {bcolours.CYELLOW}[(5) ULTRA!       ]{bcolours.ENDC}")
-                
-                if len(_player_.items.keys()) > 0:
-                    available_inputs.append("4")
-                
-                movechoose = input("\n- ")
-                movechoose.strip()
-                
-                if movechoose not in ["1","2","3","4","5"]:
-                    print("\ninput must be a number inicating wich of the options you would like to use")
-                
-                else:
+                    move_picking = False
                     
-                    if movechoose in available_inputs:
-                        
-                        if movechoose == "1":
-                            
-                            [damage , lastmove] = moves.basic_attacks(_player_)
-                            
-                            if lastmove == "back":
-                                pass
-                            else:
-                                movesave[_player_] = damage
-                                move_choice = False
 
-        for player_dmg in [P_1,P_2]:
-            player_dmg.take_damage(damage)
-                             
-                
-           
-            
-            
-            
-            print("\n\n")
-         
+            for player_dmg in [P_1,P_2]:
+                player_dmg.take_damage(damage)
+                                
+                    
             
                 
-            
-            
+                
+                
+                print("\n\n")
             
                 
+                    
+                
+                
+                
+                    
+                
+                
+
             
             
+            turn += 1
 
-        
-        
-        turn += 1
+            # game goes here$
+            # 2 turns then calc healths
+            # do the meter 
+            # check rage
+            # use def stats
+            # enable / disable supers
+            # item class
 
-        # game goes here$
-        # 2 turns then calc healths
-        # do the meter 
-        # check rage
-        # use def stats
-        # enable / disable supers
-        # item class
-
-    return
+    return 0
 
 if __name__ == "__main__":
     main()

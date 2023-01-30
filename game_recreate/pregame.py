@@ -1,5 +1,5 @@
 import random
-import items
+import item_classes
 
 def name_iput():
     
@@ -90,7 +90,7 @@ def chose_type():
 
 
 def chose_items():
-    _items_ = items._items.copy()
+    _items_ = item_classes._items.copy()
     player_items = []
 
     for i in range(8):
