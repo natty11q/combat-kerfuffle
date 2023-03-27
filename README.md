@@ -6,4 +6,11 @@ allowing for things like draws,
 
 just for fun :)
 
+
+
+edit:
+
+continuing in cpp may return to this py version another time
+
+
 natty11q
